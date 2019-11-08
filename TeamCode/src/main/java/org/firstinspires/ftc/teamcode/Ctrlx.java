@@ -43,7 +43,7 @@ public class Ctrlx extends LinearOpMode {
             // Run wheels in POV mode (note: The joystick goes negative when pushed forwards, so negate it)
             // In this mode the Left stick moves the robot fwd and back, the Right stick turns left and right.
             // This way it's also easy to just drive straight, or just turn.
-            drive = -gamepad1.left_stick_y;
+            drive = gamepad1.left_stick_y;
             turn  =  gamepad1.right_stick_x;
 
             // Combine drive and turn for blended motion.
@@ -63,9 +63,9 @@ public class Ctrlx extends LinearOpMode {
             robot.rightDrive.setPower(right);
 
             // Use gamepad left & right Bumpers to open and close the claw
-            if (gamepad1.right_bumper)
+            if (gamepad2.right_bumper)
                 clawOffset += CLAW_SPEED;
-            else if (gamepad1.left_bumper)
+            else if (gamepad2.left_bumper)
                 clawOffset -= CLAW_SPEED;
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
@@ -74,9 +74,9 @@ public class Ctrlx extends LinearOpMode {
             robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
             // Use gamepad buttons to move arm up (Y) and down (A)
-            if (gamepad1.a)
+            if (gamepad2.a)
                 robot.leftArm.setPower(robot.ARM_UP_POWER);
-            else if (gamepad1.y)
+            else if (gamepad2.y)
                 robot.leftArm.setPower(robot.ARM_DOWN_POWER);
             else
                 robot.leftArm.setPower(0.0);
