@@ -59,6 +59,8 @@ public class HardwareCtrlXPushbot
     public DcMotor  leftArm     = null;
     public Servo    leftClaw    = null;
     public Servo    rightClaw   = null;
+    public Servo    foundation = null;
+
 
     public static final double MID_SERVO       =  0.5 ;
     public static final double ARM_UP_POWER    =  -0.45 ;
@@ -82,6 +84,7 @@ public class HardwareCtrlXPushbot
         leftDrive  = hwMap.get(DcMotor.class, "left_drive");
         rightDrive = hwMap.get(DcMotor.class, "right_drive");
         leftArm    = hwMap.get(DcMotor.class, "left_arm");
+        foundation  = hwMap.get (Servo.class, "foundation");
         leftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
 
@@ -89,6 +92,7 @@ public class HardwareCtrlXPushbot
         leftDrive.setPower(0);
         rightDrive.setPower(0);
         leftArm.setPower(0);
+        foundation.setPosition(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -101,6 +105,8 @@ public class HardwareCtrlXPushbot
         rightClaw = hwMap.get(Servo.class, "right_hand");
         leftClaw.setPosition(MID_SERVO);
         rightClaw.setPosition(MID_SERVO);
+        foundation.setPosition(MID_SERVO);
+
     }
  }
 

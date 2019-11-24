@@ -4,12 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
-@Autonomous(name="Automation Far Turn ", group="Pushbot")
-public class AutomationFarTurn extends LinearOpMode {
+import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+@Autonomous (name="AutomationFoundation", group="Pushbot")
+public class AutomationFoundation extends LinearOpMode {
     /* Declare OpMode members. */
-    HardwarePushbot robot   = new HardwarePushbot();   // Use a Pushbot's hardware
+    HardwareCtrlXPushbot robot   = new HardwareCtrlXPushbot();   // Use a Pushbot's hardware
     private ElapsedTime runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
@@ -47,12 +47,18 @@ public class AutomationFarTurn extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
+        sleep(5000);     // pause for servos to move
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED,  11,  11, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
-         encoderDrive(TURN_SPEED,   9, -5.6, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-           encoderDrive(DRIVE_SPEED, 3, 3, 4.0);  // S3: Forward 10 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED,  6,  8, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
+         sleep(1000);
+        robot.foundation.setPosition(0.0);
+        sleep (1000);
+
+        encoderDrive(DRIVE_SPEED,   -8, -8, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
+//   encoderDrive(TURN_SPEED,   12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
+
+        robot.foundation.setPosition(1.0);
 
         robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
         robot.rightClaw.setPosition(0.0);
@@ -63,7 +69,7 @@ public class AutomationFarTurn extends LinearOpMode {
     }
 
     /*
-     *  Method to perfmorm a relati;ve move, based on encoder counts.
+     *  Method to perfmorm a relative move, based on encoder counts.
      *  Encoders are not reset as the move is based on the current position.
      *  Move will stop if any of three conditions occur:
      *  1) Move gets to the desired position
