@@ -92,7 +92,7 @@ public class HardwareCtrlXPushbot
         leftDrive.setPower(0);
         rightDrive.setPower(0);
         leftArm.setPower(0);
-        foundation.setPosition(0);
+        foundation.setPosition(1);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.

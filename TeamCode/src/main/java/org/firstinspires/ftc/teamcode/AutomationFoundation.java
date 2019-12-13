@@ -55,8 +55,9 @@ public class AutomationFoundation extends LinearOpMode {
         robot.foundation.setPosition(0.0);
         sleep (1000);
 
-        encoderDrive(DRIVE_SPEED,   -8, -8, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
-//   encoderDrive(TURN_SPEED,   12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED,   -6, -8, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
+         sleep ( 1000);
+         encoderDrive(DRIVE_SPEED,  10, 1, 8.0 );//2: Turn Right 12 Inches with 4 Sec timeout
 
         robot.foundation.setPosition(1.0);
 
